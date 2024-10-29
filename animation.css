@@ -1,0 +1,514 @@
+﻿/*--- Backdrop animation ---*/
+/*----strucure----
+    <div class="backdrop">
+        <div class="backdrop-container">     <-- style for this ::before
+            <div class="backdrop-content">   <-- style for this
+                // content here
+            </div>
+        </div>
+    </div>
+    <script>
+        activeBackdrop(unobserve, rootMargin)
+    </script>
+*/
+.backdrop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.backdrop-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border-radius: 5px;
+    background: linear-gradient(132deg, rgba(255, 155, 244, 1) 0%, rgba(135, 254, 255, 1) 100%);
+}
+
+.backdrop-container::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    transition: transform 0.5s ease;
+    content: '';
+    padding: 5px;
+    background: linear-gradient(132deg, rgba(135, 254, 255, 1) 0%, rgba(255, 155, 244, 1) 100%);
+    border-radius: 5px;
+}
+
+.backdrop-container>* {
+    transition: transform 0.5s ease;
+}
+
+.backdrop-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+    background: linear-gradient(132deg, rgba(135, 254, 255, 1) 0%, rgba(255, 155, 244, 1) 100%);
+    border-radius: 5px;
+    color: white
+}
+
+.backdrop.active-backdrop .backdrop-container::before {
+    transform: translate(10px, 10px)
+}
+
+.backdrop.active-backdrop .backdrop-container>* {
+    transform: translate(-10px, -10px)
+}
+
+/*--- End Backdrop animation ---*/
+
+
+/*--- Move From Left animation ---*/
+/*----using----
+    <div class="move-from-left">
+        // content here
+    </div>
+    <script>
+        activeMoveFromRight(unobserve, rootMargin)
+    </script>
+*/
+.move-from-left {
+    transition: all 1s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.active-move-from-left {
+    transform: translateX(0) !important;
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    /*    z-index: 5;*/
+}
+
+/*--- End Move From Left animation ---*/
+
+
+/*--- Move From Right animation ---*/
+/*----using----
+    <div class="move-from-right">
+        // content here
+    </div>
+    <script>
+        activeMoveFromRight(unobserve, rootMargin)
+    </script>
+*/
+.move-from-right {
+    transition: all 1s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.active-move-from-right {
+    transform: translateX(0) !important;
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+    /*    z-index: 5;*/
+}
+
+/*--- End Move From Right animation ---*/
+
+
+/*--- Bounce Rotate animation ---*/
+/*----using----
+    <div class="bounce-rotate">
+        // content here
+    </div>
+*/
+.bounce-rotate {
+    animation: bounce-rotate 2s infinite ease-out alternate;
+    padding: 20px;
+    background: linear-gradient(132deg, rgba(155, 233, 255, 1) 0%, rgba(152, 255, 135, 1) 100%);
+    color: white;
+    border-radius: 5px;
+}
+
+@keyframes bounce-rotate {
+    0% {
+        transform: translateY(100px)
+    }
+
+    25% {
+        transform: translateY(50px)
+    }
+
+    50% {
+        transform: translateY(100px)
+    }
+
+    75% {
+        transform: translateY(0px)
+    }
+
+    100% {
+        transform: translateY(0px) rotateY(360deg)
+    }
+}
+
+/*--- End Bounce Rotate animation ---*/
+
+
+/*--- Cloud Sun animation ---*/
+/*----using----
+    <div id='my-id'>    <-- change position this
+        <script>
+            create_cloud_sun('my-id', isCreateSun, frontColor, frontShadowColor, backColor, backShadowColor, sunColor)
+        </script>
+    </div>
+*/
+.cloud {
+    position: relative;
+}
+
+.cloud-container-front {
+    position: relative;
+    display: flex;
+    z-index: 5;
+    animation: bouncing 0.4s infinite linear alternate;
+}
+
+.cloud-container-front-shadow {
+    position: relative;
+    display: flex;
+    z-index: 4;
+    margin-top: -5px;
+    margin-left: 2px;
+    animation: bouncing 0.4s infinite linear alternate;
+    animation-delay: 0.1s
+}
+
+.cloud-container-back {
+    position: relative;
+    display: flex;
+    z-index: 2;
+    margin-left: 10px;
+    margin-top: -10px;
+    animation: bouncing 0.4s infinite linear alternate;
+    animation-delay: 0.4s;
+}
+
+.cloud-container-back-shadow {
+    position: relative;
+    display: flex;
+    z-index: 1;
+    margin-left: 12px;
+    margin-top: -5px;
+    animation: bouncing 0.4s infinite linear alternate;
+    animation-delay: 0.5s;
+}
+
+.circle-1 {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.circle-2 {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    position: absolute;
+    left: 40px;
+    bottom: 0;
+}
+
+.circle-3 {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    position: absolute;
+    left: 100px;
+    bottom: 0;
+}
+
+.rect-1 {
+    height: 50px;
+    width: 110px;
+    position: absolute;
+    bottom: 0;
+    border-bottom-left-radius: 10px;
+    left: 30px;
+}
+
+.cloud-container-front .circle-1,
+.cloud-container-front .circle-2,
+.cloud-container-front .circle-3,
+.cloud-container-front .rect-1 {
+    background-color: orange;
+}
+
+.cloud-container-front-shadow .circle-1,
+.cloud-container-front-shadow .circle-2,
+.cloud-container-front-shadow .circle-3,
+.cloud-container-front-shadow .rect-1 {
+    background-color: white;
+}
+
+.cloud-container-back .circle-1,
+.cloud-container-back .circle-2,
+.cloud-container-back .circle-3,
+.cloud-container-back .rect-1 {
+    background-color: purple;
+}
+
+.cloud-container-back-shadow .circle-1,
+.cloud-container-back-shadow .circle-2,
+.cloud-container-back-shadow .circle-3,
+.cloud-container-back-shadow .rect-1 {
+    background-color: darkgrey;
+}
+
+@keyframes bouncing {
+    to {
+        transform: translateY(5px)
+    }
+}
+
+.cloud-sun {
+    position: relative;
+}
+
+.cloud-sun .cloud-container-back {
+    margin-left: 60px;
+}
+
+.cloud-sun .cloud-container-back-shadow {
+    margin-left: 62px;
+}
+
+.sun {
+    position: absolute;
+    z-index: 3;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    background-color: red;
+    bottom: 20px;
+    left: 40px;
+    animation: bouncing 0.4s infinite linear alternate;
+    animation-delay: 0.3s
+}
+
+/*--- End Cloud Sun animation ---*/
+
+/*--- Door animation ---*/
+/*----using----
+    create_door_animation=(placeAt, doorImage, triggerClose)
+    --> write script for when to add door-close and door-open
+*/
+.door-animation {
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.door-animation>.door-left,
+.door-animation>.door-right {
+    width: 50%;
+    height: 100vh;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.door-animation>.door-left {
+    left: 0;
+    top: 0;
+    /* background-image: url('../../Content/Images/door_bg2.png'); */
+    background-size: 200% 100vh;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.door-animation>.door-right {
+    right: 0;
+    top: 0;
+    /* background-image: url('../../Content/Images/door_bg2.png'); */
+    background-size: 200% 100vh;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.door-left>* {
+    right: -80%;
+    position: relative;
+}
+
+.door-right>* {
+    left: -20%;
+    position: relative;
+}
+
+.door-close>.door-left {
+    animation: door_left_close 0.5s ease-in alternate forwards;
+}
+
+.door-close>.door-right {
+    animation: door_right_close 0.5s ease-in alternate forwards;
+}
+
+.door-open>.door-left {
+    animation: door_left_open 0.5s ease-in alternate forwards;
+}
+
+.door-open>.door-right {
+    animation: door_right_open 0.5s ease-in alternate forwards;
+}
+
+.door-animation.door-close~* {
+    animation: scale_down 0.5s ease-in alternate forwards;
+}
+
+.door-animation.door-open~* {
+    animation: scale_up 0.5s ease-in alternate forwards;
+}
+
+@keyframes scale_down {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+
+    to {
+        transform: scale3d(0, 0, 0);
+    }
+}
+
+@keyframes scale_up {
+    from {
+        transform: scale3d(0, 1, 0);
+    }
+
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes door_left_close {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-100%)
+    }
+
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0%)
+    }
+}
+
+@keyframes door_right_close {
+    from {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(100%)
+    }
+
+    to {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0%)
+    }
+}
+
+@keyframes door_left_open {
+    from {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0%)
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(-100%)
+    }
+}
+
+@keyframes door_right_open {
+    from {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0%)
+    }
+
+    to {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(100%)
+    }
+}
+
+/*--- End Door animation ---*/
+
+/*--- Flip animation ---*/
+/*----using----
+    <div class="flip-container">
+        <div class="flip-front-side">This ia front side</div>
+        <div class="flip-back-side">This is back side</div>
+    </div>
+*/
+.flip-container {
+    position: relative;
+}
+
+.flip-front-side {
+    position: absolute;
+    padding: 1rem;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: orange;
+    z-index: 2;
+    transition: all 0.5s ease-in-out;
+}
+
+.flip-back-side {
+    position: absolute;
+    padding: 1rem;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: cyan;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    transform: rotateY(180deg);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.flip-down {
+    transform: rotateY(180deg);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.flip-up {
+    transform: rotateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/*--- End flip animation ---*/
